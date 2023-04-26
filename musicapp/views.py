@@ -153,6 +153,7 @@ def play_recent_song(request, song_id):
 
 def all_songs(request):
     songs = Song.objects.all()
+    last_played_song=''
 
     first_time = False
     #Last played song

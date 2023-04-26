@@ -15,6 +15,8 @@ def login_request(request):
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
         user = authenticate(request, username=username, password=password)
+        
+        print(user)
 
         login(request, user)
         # messages.info(request, f"You are now logged in  as {user}")
@@ -23,6 +25,7 @@ def login_request(request):
         print(form.errors)
         # messages.error(request, 'Username or Password is Incorrect! ')
     return render(request, 'authentication/login.html', context=context)
+   
 
 
 def signup_request(request):
@@ -37,6 +40,7 @@ def signup_request(request):
 
     context = {'form': form, 'title': title}
     return render(request, 'authentication/signup.html', context=context)
+  
 
 
 def logout_request(request):
