@@ -59,6 +59,8 @@ def index(request):
         filtered_songs = songs.filter(Q(name__icontains=search_query)).distinct()
         context = {'all_songs': filtered_songs,'last_played':last_played_song,'query_search':True}
         return render(request, 'musicapp/index.html', context)
+        
+        songs = generate_songs()
 
     context = {
         'all_songs':indexpage_songs,
@@ -68,9 +70,9 @@ def index(request):
         'last_played':last_played_song,
         'first_time': first_time,
         'query_search':False,
+        'songs': songs,
     }
-    songs = generate_songs()
-    return render(request, 'musicapp/index.html', {'songs': songs})
+    return render(request, 'musicapp/index.html', context = context)
 
 
 def hindi_songs(request):
