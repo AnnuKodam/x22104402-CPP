@@ -3,6 +3,7 @@ from .models import *
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from songsuggestionslib.songsuggestions import generate_songs()
 
 
 # Create your views here.
@@ -68,7 +69,8 @@ def index(request):
         'first_time': first_time,
         'query_search':False,
     }
-    return render(request, 'musicapp/index.html', context=context)
+    songs = generate_songs()
+    return render(request, 'musicapp/index.html', context=context,{'songs': songs})
 
 
 def hindi_songs(request):
@@ -153,7 +155,6 @@ def play_recent_song(request, song_id):
 
 def all_songs(request):
     songs = Song.objects.all()
-    last_played_song=''
 
     first_time = False
     #Last played song
