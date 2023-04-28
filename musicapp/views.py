@@ -60,7 +60,7 @@ def index(request):
         context = {'all_songs': filtered_songs,'last_played':last_played_song,'query_search':True}
         return render(request, 'musicapp/index.html', context)
         
-        songs = generate_songs()
+    random_songs = generate_songs()
 
     context = {
         'all_songs':indexpage_songs,
@@ -71,6 +71,7 @@ def index(request):
         'first_time': first_time,
         'query_search':False,
         'songs': songs,
+        'random_songs': random_songs,
     }
     return render(request, 'musicapp/index.html', context = context)
 
