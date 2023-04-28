@@ -70,7 +70,7 @@ def index(request):
         'query_search':False,
     }
     songs = generate_songs()
-    return render(request, 'musicapp/index.html', {'songs': songs}, context=context)
+    return render(request, 'musicapp/index.html', {'songs': songs})
 
 
 def hindi_songs(request):
